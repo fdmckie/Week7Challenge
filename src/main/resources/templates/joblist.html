@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/joblist.css">
+</head>
+<body background="https://res.cloudinary.com/fdmckie/image/upload/v1570203420/BlueClouds_ou7uzq.jpg">
+<header>
+    <!--    <nav>-->
+    <!--        <a href="/">Home</a> |-->
+    <!--        <a href="/add">Add a Job</a> |-->
+    <!--&lt;!&ndash;        <a href="/blogauthor">Blog Authors</a> |&ndash;&gt;-->
+    <!--&lt;!&ndash;        <a href="/aboutbootcamp">About Java Bootcamp</a>&ndash;&gt;-->
+    <!--        <form th:action="@{/processsearch}" method="post">-->
+    <!--        <input type="text" placeholder="Search by Job Title.." name="search">-->
+    <!--        <button type="submit">Search</button>-->
+    <!--        </form>-->
+    <!--    </nav>-->
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/add">Add a Job</a>
+        <a><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSuji's List</b></a>
+
+        <div class="search-container">
+            <form th:action="@{/processsearch}" method="post">
+                <input type="text" placeholder="Search by Job Title..." name="search">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</header>
+
+<br /><br />
+<!--<form th:action="@{/processsearch}" method="post">-->
+<!--    <input type="text" placeholder="Search by Job Title.." name="search">-->
+<!--    <button type="submit">Search</button>-->
+<!--    <br /><br />-->
+
+<!--</form>-->
+<!--<form>-->
+<!--    <button type="submit" class="addjobbutton" formaction="/add">Add a Job</button>-->
+<!--</form>-->
+
+<div align="center">
+    <h2>Suji's List of Jobs</h2>
+</div>
+
+<div class="container">
+
+    <div style="background-color:lightblue">
+
+
+        <table>
+            <tr th:each="job : ${jobs}">
+                <!--Title :<span th:text="${bullhorn.title}" ></span><br />-->
+                <br /><br /><br />
+                <label>&nbsp&nbspJob Title: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <textarea rows="1" cols="120" class="jobtitle" disabled th:text="${job.title}" /><br /><br />
+                <label>&nbsp&nbspJob Description:  &nbsp&nbsp</label>
+                <textarea rows="4" cols="120" class="jobdescriiption" disabled th:text="${job.description}"></textarea><br /><br />
+                <label>&nbsp&nbspAuthor: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <textarea rows="1" cols="40" class="jobauthor" disabled th:text="${job.author}" /></textarea>
+                <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPhone Number: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <textarea rows="1" cols="40" class="jobphonenumber" disabled th:text="${job.phoneNumber}" /></textarea><br /><br />
+                <label>&nbsp&nbspDate Posted: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <textarea rows="1" cols="12" class="jobposteddate" disabled th:text="${job.postedDate}" ></textarea>
+                <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    Time Posted: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <textarea rows="1" cols="12" class="jobpostedtime" disabled th:text="${job.postedTime}" ></textarea><br /><br /><br />
+
+
+                <div align="center">
+                    <form id="buttonalign">
+                        <!--<a href="/add">Add Content</a><br />-->
+                        <input type="submit" value="Update" class="updatebutton" th:formaction="@{/update/{id}(id=${job.id})}">
+                        <input type="submit" value="Details" class="detailsbutton" th:formaction="@{/detail/{id}(id=${job.id})}">
+                        <input type="submit" value="Delete" class="deletebutton" th:formaction="@{/delete/{id}(id=${job.id})}">
+
+
+                    </form>
+                </div>
+            </tr>
+            <br />
+            <br />
+
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <p>&#169; 2019 DMC Enterprises</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
