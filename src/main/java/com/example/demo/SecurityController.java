@@ -41,7 +41,8 @@ public class SecurityController {
             model.addAttribute("message", "User Account Created");
         }
 
-        return "index";
+//        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("/index")
